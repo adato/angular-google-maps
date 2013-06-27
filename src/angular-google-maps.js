@@ -73,10 +73,13 @@
       this.center = opts.center;
       this.zoom = o.zoom;
       this.draggable = o.draggable;
+      this.mapStyle = o.mapStyle;
       this.dragging = false;
       this.selector = o.container;
       this.markers = [];
       this.options = o.options;
+      this.mapStyle = o.mapStyle; // map styling via scope function
+
       
       this.draw = function () {
         
@@ -93,7 +96,8 @@
             center: that.center,
             zoom: that.zoom,
             draggable: that.draggable,
-            mapTypeId : google.maps.MapTypeId.ROADMAP
+            mapTypeId : google.maps.MapTypeId.ROADMAP,
+            styles: that.mapStyle
           }));
           
           google.maps.event.addListener(_instance, "dragstart",
@@ -346,6 +350,7 @@
         zoom: "=zoom", // required
         refresh: "&refresh", // optional
         windows: "=windows", // optional
+        mapStyle: "=mapStyle", // optional"
         events: "=events"
       },
       controller: controller,      
@@ -379,7 +384,8 @@
           container: element[0],            
           center: new google.maps.LatLng(scope.center.latitude, scope.center.longitude),              
           draggable: attrs.draggable == "true",
-          zoom: scope.zoom
+          zoom: scope.zoom,
+          mapStyle: scope.mapStyle
         }));       
       
         _m.on("drag", function () {
