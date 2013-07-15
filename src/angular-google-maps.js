@@ -478,9 +478,9 @@
         }
         else {
           scope.$watch("refresh()", function (newValue, oldValue) {
-            if (newValue && !oldValue) {
+            //if (newValue && !oldValue) {  // Ploski: do not compare oldvals, refresh whenever watch occurs
               _m.draw();
-            }
+            //}
           }); 
         }
         
